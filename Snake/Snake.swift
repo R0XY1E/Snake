@@ -12,8 +12,9 @@ class Snake {
     
     init(at position: CGPoint) {
         head = SKShapeNode(rectOf: CGSize(width: 20, height: 20))
-        head.fillColor = .green
-        head.strokeColor = .green
+        let snakeColor = UIColor(red: 0.1, green: 0.4, blue: 0.1, alpha: 1.0)
+        head.fillColor = snakeColor
+        head.strokeColor = snakeColor
         head.position = position
         
         body = [head]
@@ -21,8 +22,8 @@ class Snake {
         // 添加初始的两个身体段
         for i in 1...2 {
             let segment = SKShapeNode(rectOf: CGSize(width: 20, height: 20))
-            segment.fillColor = .green
-            segment.strokeColor = .green
+            segment.fillColor = snakeColor
+            segment.strokeColor = snakeColor
             segment.position = CGPoint(x: position.x - CGFloat(i) * segmentSize, y: position.y)
             body.append(segment)
         }
@@ -30,7 +31,7 @@ class Snake {
     
     func move() {
         // 保存所有段的当前位置
-        var positions = body.map { $0.position }
+        let positions = body.map { $0.position }
         
         // 移动头部
         switch direction {
@@ -64,8 +65,9 @@ class Snake {
     @discardableResult
     func grow() -> SKShapeNode {
         let newSegment = SKShapeNode(rectOf: CGSize(width: 20, height: 20))
-        newSegment.fillColor = .green
-        newSegment.strokeColor = .green
+        let snakeColor = UIColor(red: 0.1, green: 0.4, blue: 0.1, alpha: 1.0)
+        newSegment.fillColor = snakeColor
+        newSegment.strokeColor = snakeColor
         newSegment.position = body.last?.position ?? head.position
         body.append(newSegment)
         return newSegment
